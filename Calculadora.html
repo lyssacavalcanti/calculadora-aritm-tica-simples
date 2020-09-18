@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		<title>Calculadora da Lyssa</title>
+            <style type="text/css">
+            </style>
+        
+            <script type="text/javascript">
+            function calcular(oper) {
+                var dado1 = document.calcform.dado1.value;
+                var dado2 = document.calcform.dado2.value;
+                
+                if (oper == "somar") {
+                    var res = parseInt(dado1) + parseInt(dado2);
+                    } else {
+                        if (oper == "subtrair") {
+                            var res = dado1-dado2;
+                    } else {
+                        if(oper == "multiplicar") {
+                            var res = dado1*dado2;
+                    } else {
+                        var res = dado2/dado2;
+                    }
+                }     
+            }
+            document.calcform.res.value = res;  
+            }
+            </script>
+        
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h2 class="titulo">Calculadora da Lyssa</h2>
+            </div>
+        </header>
+
+        <form name="calcform" method="post" action="">
+            <fieldset>
+                <legend>Calculadora Simples | Lyssa</legend>
+
+                <label for="dado1">Digite o primeiro valor</label>
+                <input type="text" name="dado1" id="dado1" />
+
+                <label for="dado2">Digite o segundo valor</label>
+                <input type="text" name="dado2" id="dado2" />
+                
+                <label for="oper">Escolha a operação:</label>
+                
+                <select name="oper" id="oper">
+                    <option value="somar">Soma</option>
+                    <option value="subtrair">Subtração</option>
+                    <option value="multiplicar">Multiplicação</option>
+                    <option value="dividir">Divisão</option>
+                </select>
+                
+                <label for="res">Resultado:</label>
+                <input type="text" name="res" id="res"/>
+                
+                <input type="button" value="Calcular" class="botao" onclick="calcular(document.calcform.oper.value)"/>
+                
+            </fieldset>
+        </form>
+    </body>
+</html>

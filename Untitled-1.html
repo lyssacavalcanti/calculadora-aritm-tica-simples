@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+		
+<div></div>
+div {
+  transform:
+    scale(var(--scaling, 1))
+    translateX(var(--translation, 0px))
+    translateY(calc(var(--translation, 0px) / 2))
+    rotate(var(--rotation, 0deg));
+  
+  animation: 
+    move 2000ms infinite alternate ease-in-out,
+    other 1400ms infinite alternate ease-in-out;
+}
+
+.supported div {
+  --hue: 151;
+}
+
+@keyframes move {
+  100% {
+    --translation: 75vmin;
+  }
+}
+@keyframes other {
+  50% {
+    --scaling: .8
+  }
+  75% {
+    --rotation: 180deg;
+  }
+  100% {
+    --rotation: 120deg;
+  }
+}
+
+div {
+  width: 25vmin;
+  height: 25vmin;
+  border-radius: 5vmin;
+  background: hsl(var(--hue, 343), 100%, 54%);
+  border: 2vmin solid hsla(0, 0%, 0%, .5);
+  will-change: transform;
+}
+
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: hsl(190, 16%, 12%);
+}
+
+if (window.CSS && CSS.registerProperty) {
+  document.documentElement.classList.add('supported');
+  
+  CSS.registerProperty({
+    name: '--translation',
+    syntax: '<length>',
+    inherits: false,
+    initialValue: '0px'
+  });
+  CSS.registerProperty({
+    name: '--rotation',
+    syntax: '<angle>',
+    inherits: false,
+    initialValue: '0deg'
+  });
+  CSS.registerProperty({
+    name: '--scaling',
+    syntax: '<number>',
+    inherits: false,
+    initialValue: '1'
+  });
+}
